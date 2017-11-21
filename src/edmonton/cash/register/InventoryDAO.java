@@ -22,7 +22,10 @@ public class InventoryDAO {
      @Resource(mappedName = "jdbc/EdmontonCashDB")
       private DataSource ds;
      
-     public void addItem(Inventory inventory){}
+     public void addItem(Inventory inventory){
+         String sql = "";
+         executeModifyQuery(sql);
+     }
      
      public void deleteItem(){}
      
@@ -30,7 +33,6 @@ public class InventoryDAO {
      
      public void getItem(){}
      
-     public void getAllItem(){}
     
      public ArrayList<Inventory> getAllItems(){
           ArrayList<Inventory> list = new ArrayList();
@@ -47,6 +49,7 @@ public class InventoryDAO {
                 inventory.setQuantity(rs.getInt("QUANTITY"));
                 list.add(inventory);
              }
+             conn.close();
          } catch (Exception e) {
              
          }
@@ -64,20 +67,20 @@ public class InventoryDAO {
          }
      }
      
-     public ResultSet executeFetchQuery(String sql){
-        ResultSet rs = null;
-        
-         try {
-            Connection conn = ds.getConnection();
-            conn.createStatement().executeQuery(sql);
-            conn.close();
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-
-        return rs;
-        
-     
-     }
+//     public ResultSet executeFetchQuery(String sql){
+//        ResultSet rs = null;
+//        
+//         try {
+//            Connection conn = ds.getConnection();
+//            conn.createStatement().executeQuery(sql);
+//            conn.close();
+//        } catch (Exception e) {
+//            System.err.println(e.getMessage());
+//        }
+//
+//        return rs;
+//        
+//     
+//     }
     
 }
